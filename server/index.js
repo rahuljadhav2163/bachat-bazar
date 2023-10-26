@@ -22,17 +22,17 @@ const User = new Schema({
     },
     email: {
         type: "String",
-        require : true,
+        required : true,
         unique : true
     },
     number: {
         type: "String",
-        require : true,
+        required : true,
         unique : true
     },
     password: {
         type: "String",
-        require : true,
+        required : true,
     },
     address: {
         type : "String",
@@ -73,6 +73,25 @@ app.post('/signup' , async(req,res)=>{
     
 })
 
+
+app.get('/login', async(req,res)=>{
+    const {name, email, number, password} = req.body;
+    const findUser = await userData.findOne({password, email}).select('name number email')
+
+   if (findUser==null){
+    return res.json({
+        success : "false",
+        message : "chal nikal yaha se..!"
+    }
+    )
+   }
+   res.json({
+    success : "true",
+    data : findUser,
+    message : "login successfully..!"
+}
+)
+})
 
 const PORT = 5000;
 app.listen(PORT, () => {
