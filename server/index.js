@@ -219,6 +219,49 @@ app.get('/getorder/:id', async (req, res) => {
 
 })
 
+// GET ALL ORDERS OF USER
+
+app.get('/getorder/user/:id', async (req, res) => {
+    const { id } = req.params
+    const findOrders = await Order.find({ user: { _id: id } }).populate('user  product')
+    findOrders.forEach((Order)=>{
+        Order.user.password = undefined
+    })
+    res.json({
+        success:"true",
+        data:findOrders,
+        message:" Orders fetch successfully..!"  
+      })
+})
+
+// GET ALL OREDERS
+
+app.get('/oreders' , async(req,res)=>{
+    const allOrders = await Order.find();
+    res.json({
+        success:"true",
+        data:allOrders,
+        message:" Orders fetch successfully..!"  
+      })
+})
+
+// UPDATE STATUS
+
+app.patch('/status/:id',async(req,res)=>{
+    const {status} = req.body;
+    const {id} = req.params;
+    
+    await Order.updateOne({_id:id},{$set:{status:status}})
+
+     const updatedStatus = await Order.findOne({_id:id})
+
+     res.json({
+        success:"true",
+        data:updatedStatus,
+        message:" Status updated successfully..!" 
+     })
+
+})
 
 
 const PORT = 5000;
