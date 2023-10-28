@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import userData from "./models/user.js";
 import Products from "./models/Product.js";
+import Order from "./models/Order.js";
 import dotenv from "dotenv";
 dotenv.config();
 const app = express()
@@ -163,17 +164,61 @@ app.put('/updateproduct/:id', async (req, res) => {
 // SEARCH PRODUCT
 
 app.get('/searchproduct', async (req, res) => {
-            const {q} = req.query;
+    const { q } = req.query;
 
-            const searchProduct = await Products.findOne({name:{$regex:q, $options:'i'}})
-           
-            res.json({
-                success: "true",
-                data: searchProduct,
-                message: "Product find succesfully..!"
-            })
+    const searchProduct = await Products.findOne({ name: { $regex: q, $options: 'i' } })
+
+    res.json({
+        success: "true",
+        data: searchProduct,
+        message: "Product find succesfully..!"
+    })
 
 })
+
+
+// PLACE ORDER
+
+app.post('/order', async (req, res) => {
+    const { user, product, status, quantity, deliveryCharges, shipingAddress } = req.body;
+
+    const oreders = new Order({
+        user, product, status, quantity, deliveryCharges, shipingAddress
+    })
+
+    try {
+        const saveOrder = await oreders.save();
+        res.json({
+            success: true,
+            Order: saveOrder,
+            message: " Place your order..!"
+        })
+    } catch (e) {
+        res.json({
+            success: false,
+            message: e.message
+        })
+    }
+
+})
+
+// GET ORDER BY ID
+
+app.get('/getorder/:id', async (req, res) => {
+    const { id } = req.params;
+
+    const viewOrder = await Order.findOne({ _id: id }).populate("user product");
+
+    viewOrder.user.password = undefined
+
+    res.json({
+        success: "true",
+        data: viewOrder,
+        message: "Order fetched succesfully..!"
+    })
+
+})
+
 
 
 const PORT = 5000;
