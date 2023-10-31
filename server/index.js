@@ -52,7 +52,7 @@ app.post('/signup', async (req, res) => {
 // LOGIN USER
 
 
-app.get('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     const { name, email, number, password } = req.body;
     const findUser = await userData.findOne({ password, email }).select('name number email')
 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from "axios"
 import "./Signup.css"
+import { Link } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [passwoard, setPassword] = useState('');
+    const [password, setPassword] = useState('');
     const [number, setNumber] = useState('');
     const [address, setAddress] = useState('');
     const [gender, setGender] = useState('male');
@@ -18,8 +20,8 @@ function Signup() {
             alert("email is required")
             return;
         }
-        if (!passwoard) {
-            alert("passwoard is required")
+        if (!password) {
+            alert("password is required")
             return;
         }
         if (!number) {
@@ -33,12 +35,12 @@ function Signup() {
 
         const responce = await axios.post("/signup",
             {
-                name: name, 
-                email:email, 
-                passwoard:passwoard, 
-                number : number, 
-                address:address,
-                 gender: gender
+                name: name,
+                email: email,
+                password: password,
+                number: number,
+                address: address,
+                gender: gender
             }
         );
 
@@ -52,7 +54,7 @@ function Signup() {
 
     return (
         <div>
-
+<Navbar/>
             <form className='signup-box'>
                 <h1 className='heading-signup'>Signup</h1>
 
@@ -116,9 +118,14 @@ function Signup() {
                 </div>
 
                 <button type='button' onClick={signup} className='btnn'>Signup</button>
+
+                <p className='heading-signup'>
+                    <Link to="/login">
+                       Alraedy have an account
+                    </Link>
+                </p>
             </form>
         </div>
     )
 }
-
 export default Signup 

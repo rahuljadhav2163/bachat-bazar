@@ -1,0 +1,33 @@
+.nav{
+    width: 100%;
+    height: 70px;
+    background-color: aquamarine;
+    display: flex;
+}
+.logo{
+    font-size: 35px;
+    margin-left: 50px;
+    padding-top: 12px;
+}
+.link-container{
+    margin-left: 600px;
+    font-size: 25px;
+    display: flex;
+}
+.link{
+    margin: 10px 20px;
+    color: black;
+}
+.username{
+    font-size: 20px;
+    margin: 10px 120px;
+}
+.logpout{
+    font-size: 18px;
+    padding-top: 48px;
+    cursor: pointer;
+    color: red;
+}
+.btnn-contaain{
+    display: flex;
+}
