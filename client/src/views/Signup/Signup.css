@@ -1,0 +1,19 @@
+.signup-box{
+    height: 500px;
+    width: 400px;
+    border:1px solid black;
+    margin: 50px auto;
+}
+.heading-signup{
+    text-align: center;
+}
+.input-box{
+    display: block;
+    height: 30px;
+    width: 250px;
+    font-size: 18px;
+    margin: 25px auto;
+}
+.btnn{
+    margin-left: 170px;
+}
