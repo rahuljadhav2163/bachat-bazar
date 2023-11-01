@@ -9,7 +9,7 @@ const [user , setUser] = useState({});
 useEffect(()=>{
   const localuser = JSON.parse(localStorage.getItem('localuser') || "{}");
   setUser(localuser);
-})
+},[])
 
 const logout  = ()=>{
   localStorage.removeItem('localuser');
