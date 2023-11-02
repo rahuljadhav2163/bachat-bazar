@@ -6,6 +6,7 @@ import Signup from './views/Signup/Signup';
 import Login from './views/Login/Login';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Orders from './views/Orders/Orders';
+import Buynow from './views/Buynow/Buynow';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/order",
     element: <Orders />,
+  },
+  {
+    path: "/buynow/:id",
+    element: <Buynow />,
   }
 ]);
 

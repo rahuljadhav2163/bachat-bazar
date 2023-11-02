@@ -23,13 +23,14 @@ export default function Home() {
            <div className='products-container'>
            {
               products.map((product,index)=>{
-               const {name,image,price,description}=product;
+               const {name,image,price,description,_id}=product;
                return(
                  <Card 
                  name={name}
                  image={image}
                  price={price}
                  description={description}
+                 id={_id}
                  />
                )
               })
