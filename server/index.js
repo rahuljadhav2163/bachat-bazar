@@ -166,7 +166,7 @@ app.put('/updateproduct/:id', async (req, res) => {
 app.get('/searchproduct', async (req, res) => {
     const { q } = req.query;
 
-    const searchProduct = await Products.findOne({ name: { $regex: q, $options: 'i' } })
+    const searchProduct = await Products.find({ name: { $regex: q, $options: 'i' } })
 
     res.json({
         success: "true",
@@ -225,7 +225,7 @@ app.get('/getorder/user/:id', async (req, res) => {
     const { id } = req.params
     const findOrders = await Order.find({ user: { _id: id } }).populate('user  product')
     findOrders.forEach((Order)=>{
-        Order.user.password = undefined
+       
     })
     res.json({
         success:"true",

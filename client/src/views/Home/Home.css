@@ -4,3 +4,13 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+.search-box{
+    height: 40px;
+    width: 400px;
+    font-size: 20px;
+    display: block;
+    margin: 30px auto;
+    padding: 0px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
