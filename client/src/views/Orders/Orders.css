@@ -1,9 +1,45 @@
 .my-oder{
     margin-top: 20px;
     font-size: 40px;
+   
 }
 .my-roder{
     border: 2px solid black;
     padding: 10px 50px;
     margin: 20px 50px;
+    position: relative;
 }
+.my-roder {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .my-roder h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .my-roder p {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+  
+  .my-roder span {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+
+  .status{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+  }
+
+  

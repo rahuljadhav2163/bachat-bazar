@@ -8,7 +8,7 @@ function Card({id,name,image,price,description}) {
         <h2 className='text-center'>{name}</h2>
         <p className='text-center product-dec'>{description}</p>
         <p className='text-center product-price'>₹ {price}</p>
-        <Link to={`/buynow/${id}`} className='product-buy-btn'> Buy Now 
+        <Link to={`/buynow/${id}`} className='product-buy-btnn'> Buy Now 
         </Link>
         </div>
   )

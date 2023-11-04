@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import React  from 'react'
 import "./Navbar.css"
 import { Link } from 'react-router-dom'
+import logo from "./../../components/Navbar/logo.png"
 function Navbar() {
 
 const [user , setUser] = useState({});
@@ -20,9 +21,9 @@ const logout  = ()=>{
   return (
     <div>
         <div className='nav'>
-            <p className='logo'>Bachat Bazar</p>
+            <img className="logo" src={logo}/>
             <div className='link-container'>
-            <p className='link'><Link to='/'>Home</Link></p>
+            <p className='link hh'><Link to='/'>Home</Link></p>
                
                {
                 user?.name ? <p className='link'><Link to='/order'>My Orders</Link></p>

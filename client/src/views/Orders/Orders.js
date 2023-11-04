@@ -32,8 +32,9 @@ function Orders() {
                   <h1>{product.name}</h1>
                   <p>{user.number}</p>
                 <p>{shipingAddress}</p>
-                <p>{quantity} x {deliveryCharges} = ₹{quantity * deliveryCharges} </p>
-                <span>{status}</span>
+                <p>{quantity} x {product.price} = ₹{quantity * product.price} </p>
+                <p>Delivery Charges: ₹{deliveryCharges}</p>
+                <span className='status'>{status}</span>
                 </div>
               );
         })

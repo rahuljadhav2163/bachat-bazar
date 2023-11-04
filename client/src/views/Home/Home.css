@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(239, 243, 249);
+}
 .products-container{
     display: flex;
     flex-direction: row;
@@ -5,7 +8,6 @@
     flex-wrap: wrap;
 }
 .search-box{
-    height: 40px;
     width: 400px;
     font-size: 20px;
     display: block;
@@ -14,3 +16,20 @@
     border: 2px solid black;
     border-radius: 5px;
 }
+.search-box {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .search-box:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px yellow;
+  }
+  
+  ::placeholder {
+    color: #999;
+  }
+  

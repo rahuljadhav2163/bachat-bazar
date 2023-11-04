@@ -98,7 +98,7 @@ function Signup() {
                     }}
                 />
 
-                <div>
+                <div className='radio-div'>
                     <input type='radio'
                         name="gender"
                         checked={gender === "male"}
@@ -107,7 +107,7 @@ function Signup() {
                         }}
                     />Male
 
-
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type='radio'
                         name="gender"
                         checked={gender === "female"}
@@ -119,9 +119,9 @@ function Signup() {
 
                 <button type='button' onClick={signup} className='btnn'>Signup</button>
 
-                <p className='heading-signup'>
+                <p className='heading-signup question'>
                     <Link to="/login">
-                       Alraedy have an account
+                       Alraedy have an account?
                     </Link>
                 </p>
             </form>

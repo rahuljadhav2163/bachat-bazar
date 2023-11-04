@@ -1,33 +1,62 @@
-.nav{
-    width: 100%;
-    height: 70px;
-    background-color: aquamarine;
+.nav {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: yellow; 
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    height: 65px;
 }
-.logo{
-    font-size: 35px;
-    margin-left: 50px;
-    padding-top: 12px;
+
+.logo {
+    height: 200px;
 }
-.link-container{
-    margin-left: 600px;
-    font-size: 25px;
+
+.link-container {
     display: flex;
+    align-items: center;
 }
-.link{
-    margin: 10px 20px;
-    color: black;
-}
-.username{
+
+.link {
+    margin: 0 10px;
+    margin-left: 30px;
+    text-transform: uppercase;
     font-size: 20px;
-    margin: 10px 120px;
 }
-.logpout{
-    font-size: 18px;
-    padding-top: 48px;
-    cursor: pointer;
+
+.link a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.link a:hover {
     color: red;
 }
-.btnn-contaain{
+
+.btnn-contaain {
     display: flex;
+}
+
+.username {
+    font-size: 20px;
+    display: block;
+}
+
+.logpout {
+    cursor: pointer;
+    padding: 8px 16px;
+    font-size: 19px;
+    border-radius: 5px;
+    background-color: #f44336;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logpout:hover {
+    border: #f44336 solid 2px;
+    background-color: yellow;
+    
+}
+
+.hh{
+    margin-left: 300px;
 }

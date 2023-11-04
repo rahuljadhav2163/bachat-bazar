@@ -57,6 +57,8 @@
     padding: 10px 10px;
     margin-top: 20px;
     width: 300px;
+    border-radius: 5px;
+    border: 2px solid black;
 }
 .place-order{
     font-size: 20px;
