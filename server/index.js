@@ -3,12 +3,13 @@ import mongoose from "mongoose"
 import userData from "./models/user.js";
 import Products from "./models/Product.js";
 import Order from "./models/Order.js";
+import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 const app = express()
 
 app.use(express.json());
-
+const __dirname = path.resolve();
 const mongoconnect = async () => {
     const connection = await mongoose.connect(process.env.MONGO_URI);
     if (connection) {
@@ -20,7 +21,7 @@ mongoconnect();
 
 // SIGNUP USER 
 
-app.post('/signup', async (req, res) => {
+app.post('/api/signup', async (req, res) => {
     const { name, email, number, password, address, gender } = req.body;
     try {
         const newUser = new userData({
@@ -52,7 +53,7 @@ app.post('/signup', async (req, res) => {
 // LOGIN USER
 
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { name, email, number, password } = req.body;
     const findUser = await userData.findOne({ password, email }).select('name number email')
 
@@ -73,7 +74,7 @@ app.post('/login', async (req, res) => {
 
 // POST ALL THE PRODUCT 
 
-app.post('/postproduct', async (req, res) => {
+app.post('/api/postproduct', async (req, res) => {
     const { name, description, image, price, brand, category } = req.body;
 
     const newProduct = new Products({
@@ -99,7 +100,7 @@ app.post('/postproduct', async (req, res) => {
 
 // GET ALL PRODUCT 
 
-app.get('/getproducts', async (req, res) => {
+app.get('/api/getproducts', async (req, res) => {
     const allProduct = await Products.find();
 
     res.json({
@@ -112,7 +113,7 @@ app.get('/getproducts', async (req, res) => {
 
 // GET PRODUCT BY ID
 
-app.get('/getproduct/:id', async (req, res) => {
+app.get('/api/getproduct/:id', async (req, res) => {
     const { id } = req.params
 
     const idProduct = await Products.findOne({ _id: id })
@@ -125,7 +126,7 @@ app.get('/getproduct/:id', async (req, res) => {
 
 // DELETE PRODUCT BY ID
 
-app.delete('/delproduct/:id', async (req, res) => {
+app.delete('/api/delproduct/:id', async (req, res) => {
     const { id } = req.params
 
     await Products.deleteOne({ _id: id })
@@ -138,7 +139,7 @@ app.delete('/delproduct/:id', async (req, res) => {
 
 // UPDATE PRODUCT
 
-app.put('/updateproduct/:id', async (req, res) => {
+app.put('/api/updateproduct/:id', async (req, res) => {
     const { id } = req.params
 
     const { name, description, image, price, brand, category } = req.body;
@@ -163,7 +164,7 @@ app.put('/updateproduct/:id', async (req, res) => {
 
 // SEARCH PRODUCT
 
-app.get('/searchproduct', async (req, res) => {
+app.get('/api/searchproduct', async (req, res) => {
     const { q } = req.query;
 
     const searchProduct = await Products.find({ name: { $regex: q, $options: 'i' } })
@@ -179,7 +180,7 @@ app.get('/searchproduct', async (req, res) => {
 
 // PLACE ORDER
 
-app.post('/order', async (req, res) => {
+app.post('/api/order', async (req, res) => {
     const { user, product, status, quantity, deliveryCharges, shipingAddress } = req.body;
 
     const oreders = new Order({
@@ -204,7 +205,7 @@ app.post('/order', async (req, res) => {
 
 // GET ORDER BY ID
 
-app.get('/getorder/:id', async (req, res) => {
+app.get('/api/getorder/:id', async (req, res) => {
     const { id } = req.params;
 
     const viewOrder = await Order.findOne({ _id: id }).populate("user product");
@@ -221,7 +222,7 @@ app.get('/getorder/:id', async (req, res) => {
 
 // GET ALL ORDERS OF USER
 
-app.get('/getorder/user/:id', async (req, res) => {
+app.get('/api/getorder/user/:id', async (req, res) => {
     const { id } = req.params
     const findOrders = await Order.find({ user: { _id: id } }).populate('user  product')
     findOrders.forEach((Order)=>{
@@ -236,7 +237,7 @@ app.get('/getorder/user/:id', async (req, res) => {
 
 // GET ALL OREDERS
 
-app.get('/oreders' , async(req,res)=>{
+app.get('/api/oreders' , async(req,res)=>{
     const allOrders = await Order.find();
     res.json({
         success:"true",
@@ -247,7 +248,7 @@ app.get('/oreders' , async(req,res)=>{
 
 // UPDATE STATUS
 
-app.patch('/status/:id',async(req,res)=>{
+app.patch('/api/status/:id',async(req,res)=>{
     const {status} = req.body;
     const {id} = req.params;
     
@@ -263,6 +264,13 @@ app.patch('/status/:id',async(req,res)=>{
 
 })
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+    })
+}
 
 const PORT = 5000;
 app.listen(PORT, () => {
