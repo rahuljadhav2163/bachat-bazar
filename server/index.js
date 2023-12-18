@@ -1,6 +1,6 @@
 import express from "express"
 import mongoose from "mongoose"
-import userData from "./models/user.js";
+import userData from "./models/User.js";
 import Products from "./models/Product.js";
 import Order from "./models/Order.js";
 import path from "path";
