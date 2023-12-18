@@ -8,7 +8,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
 
-  console.log(products);
+
 
   const searchProduct = async () => {
 
@@ -17,27 +17,26 @@ export default function Home() {
       return;
     }
 
-    const response = await axios.get(`/searchproduct?q=${search}`)
-    console.log(response?.data?.data)
+    const response = await axios.get(`/api/searchproduct?q=${search}`)
     setProducts(response?.data?.data)
   }
+
   useEffect(() => {
     searchProduct();
   }, [search])
 
-  console.log(products);
+  
 
   const getProduct = async () => {
     try{
-      const responce = await axios.get('/getproducts');
+      const responce = await axios.get('/api/getproducts');
       setProducts(responce?.data?.data)
     }
     catch(err){
-      alert(err)
+      console.log(err.message)
     }
-   
   }
-
+  
   useEffect(() => {
     getProduct();
   }, [])

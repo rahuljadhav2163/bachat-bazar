@@ -33,7 +33,7 @@ function Signup() {
             return;
         }
 
-        const responce = await axios.post("/signup",
+        const responce = await axios.post("/api/signup",
             {
                 name: name,
                 email: email,
@@ -54,7 +54,7 @@ function Signup() {
 
     return (
         <div>
-<Navbar/>
+            <Navbar />
             <form className='signup-box'>
                 <h1 className='heading-signup'>Signup</h1>
 
@@ -107,7 +107,7 @@ function Signup() {
                         }}
                     />Male
 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type='radio'
                         name="gender"
                         checked={gender === "female"}
@@ -121,7 +121,7 @@ function Signup() {
 
                 <p className='heading-signup question'>
                     <Link to="/login">
-                       Alraedy have an account?
+                        Alraedy have an account?
                     </Link>
                 </p>
             </form>

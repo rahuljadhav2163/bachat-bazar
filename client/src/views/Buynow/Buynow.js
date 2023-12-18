@@ -10,10 +10,10 @@ const {id} = useParams();
 const [deatail , setDeatail]=useState({});
 const [charges, setCharges]=useState('50');
 const [quantity , setQuantity] = useState(1);
-const [ shipaddress, setShipaddress] = useState('')
+const [shipaddress, setShipaddress] = useState('')
 
 const loadDeatail = async ()=>{
-          const responce = await axios.get(`/getproduct/${id}`)
+          const responce = await axios.get(`/api/getproduct/${id}`)
           setDeatail(responce?.data?.data)
 }
 
@@ -35,7 +35,7 @@ useEffect(()=>{
   const localuser = JSON.parse(localStorage.getItem('localuser') || "{}");
 
 const placeOrder = async ()=>{
-  const responce = await axios.post("/order",
+  const responce = await axios.post("/api/order",
   {
     user:localuser._id,
     product:id,

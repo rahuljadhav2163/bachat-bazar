@@ -261,7 +261,6 @@ app.patch('/api/status/:id',async(req,res)=>{
         data:updatedStatus,
         message:" Status updated successfully..!" 
      })
-
 })
 
 if (process.env.NODE_ENV === "production") {

@@ -13,7 +13,7 @@ function Orders() {
     if (!localuser?._id) {
       return;
     }
-    const responce = await axios.get(`/getorder/user/${localuser._id}`)
+    const responce = await axios.get(`/api/getorder/user/${localuser._id}`)
     setOrders(responce?.data?.data)
   }
   useEffect(() => {

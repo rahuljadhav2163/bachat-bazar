@@ -10,7 +10,7 @@ function Login() {
 
   const login = async () => {
 
-    const responce = await axios.post("/login",
+    const responce = await axios.post("/api/login",
       {
         email: email,
         password: password
